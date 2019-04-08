@@ -35,7 +35,7 @@ pub mod avx2;
     all(target_feature = "avx2", not(target_feature = "avx512ifma")),
     rustdoc
 ))]
-pub(crate) use self::avx2::{
+pub use self::avx2::{
     constants::BASEPOINT_ODD_LOOKUP_TABLE, edwards::CachedPoint, edwards::ExtendedPoint,
 };
 
@@ -43,7 +43,7 @@ pub(crate) use self::avx2::{
 #[doc(cfg(target_feature = "avx512ifma"))]
 pub mod ifma;
 #[cfg(target_feature = "avx512ifma")]
-pub(crate) use self::ifma::{
+pub use self::ifma::{
     constants::BASEPOINT_ODD_LOOKUP_TABLE, edwards::CachedPoint, edwards::ExtendedPoint,
 };
 

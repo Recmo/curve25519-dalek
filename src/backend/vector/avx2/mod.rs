@@ -22,8 +22,8 @@
     doc(include = "../docs/avx2-notes.md")
 )]
 
-pub(crate) mod field;
+pub mod field;
 
-pub(crate) mod edwards;
+pub mod edwards;
 
-pub(crate) mod constants;
+pub mod constants;

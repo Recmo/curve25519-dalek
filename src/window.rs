@@ -14,16 +14,16 @@
 
 use core::fmt::Debug;
 
+use subtle::Choice;
 use subtle::ConditionallyNegatable;
 use subtle::ConditionallySelectable;
 use subtle::ConstantTimeEq;
-use subtle::Choice;
 
 use traits::Identity;
 
-use edwards::EdwardsPoint;
-use backend::serial::curve_models::ProjectiveNielsPoint;
 use backend::serial::curve_models::AffineNielsPoint;
+use backend::serial::curve_models::ProjectiveNielsPoint;
+use edwards::EdwardsPoint;
 
 /// A lookup table of precomputed multiples of a point \\(P\\), used to
 /// compute \\( xP \\) for \\( -8 \leq x \leq 8 \\).
@@ -32,13 +32,13 @@ use backend::serial::curve_models::AffineNielsPoint;
 ///
 /// Since `LookupTable` does not implement `Index`, it's more difficult
 /// to accidentally use the table directly.  Unfortunately the table is
-/// only `pub(crate)` so that we can write hardcoded constants, so it's
+/// only `pub` so that we can write hardcoded constants, so it's
 /// still technically possible.  It would be nice to prevent direct
 /// access to the table.
 ///
 /// XXX make this generic with respect to table size
 #[derive(Copy, Clone)]
-pub struct LookupTable<T>(pub(crate) [T; 8]);
+pub struct LookupTable<T>(pub [T; 8]);
 
 use clear_on_drop::clear::ZeroSafe;
 
@@ -122,7 +122,7 @@ impl<'a> From<&'a EdwardsPoint> for LookupTable<AffineNielsPoint> {
 
 /// Holds odd multiples 1A, 3A, ..., 15A of a point A.
 #[derive(Copy, Clone)]
-pub(crate) struct NafLookupTable5<T>(pub(crate) [T; 8]);
+pub struct NafLookupTable5<T>(pub [T; 8]);
 
 impl<T: Copy> NafLookupTable5<T> {
     /// Given public, odd \\( x \\) with \\( 0 < x < 2^4 \\), return \\(xA\\).
@@ -166,7 +166,7 @@ impl<'a> From<&'a EdwardsPoint> for NafLookupTable5<AffineNielsPoint> {
 
 /// Holds stuff up to 8.
 #[derive(Copy, Clone)]
-pub(crate) struct NafLookupTable8<T>(pub(crate) [T; 64]);
+pub struct NafLookupTable8<T>(pub [T; 64]);
 
 impl<T: Copy> NafLookupTable8<T> {
     pub fn select(&self, x: usize) -> T {

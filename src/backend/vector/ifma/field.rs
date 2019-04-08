@@ -24,11 +24,11 @@ extern "C" {
 
 /// A vector of four field elements in radix 2^51, with unreduced coefficients.
 #[derive(Copy, Clone, Debug)]
-pub struct F51x4Unreduced(pub(crate) [u64x4; 5]);
+pub struct F51x4Unreduced(pub [u64x4; 5]);
 
 /// A vector of four field elements in radix 2^51, with reduced coefficients.
 #[derive(Copy, Clone, Debug)]
-pub struct F51x4Reduced(pub(crate) [u64x4; 5]);
+pub struct F51x4Reduced(pub [u64x4; 5]);
 
 #[derive(Copy, Clone)]
 pub enum Shuffle {

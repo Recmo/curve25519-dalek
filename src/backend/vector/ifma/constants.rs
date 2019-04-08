@@ -17,7 +17,7 @@ use super::edwards::{CachedPoint, ExtendedPoint};
 use super::field::{F51x4Reduced, F51x4Unreduced};
 
 /// The identity element as an `ExtendedPoint`.
-pub(crate) static EXTENDEDPOINT_IDENTITY: ExtendedPoint = ExtendedPoint(F51x4Unreduced([
+pub static EXTENDEDPOINT_IDENTITY: ExtendedPoint = ExtendedPoint(F51x4Unreduced([
     u64x4::new(0, 1, 1, 0),
     u64x4::new(0, 0, 0, 0),
     u64x4::new(0, 0, 0, 0),
@@ -26,7 +26,7 @@ pub(crate) static EXTENDEDPOINT_IDENTITY: ExtendedPoint = ExtendedPoint(F51x4Unr
 ]));
 
 /// The identity element as a `CachedPoint`.
-pub(crate) static CACHEDPOINT_IDENTITY: CachedPoint = CachedPoint(F51x4Reduced([
+pub static CACHEDPOINT_IDENTITY: CachedPoint = CachedPoint(F51x4Reduced([
     u64x4::new(121647, 121666, 243332, 2251799813685229),
     u64x4::new(2251799813685248, 0, 0, 2251799813685247),
     u64x4::new(2251799813685247, 0, 0, 2251799813685247),
@@ -35,7 +35,7 @@ pub(crate) static CACHEDPOINT_IDENTITY: CachedPoint = CachedPoint(F51x4Reduced([
 ]));
 
 /// Odd multiples of the Ed25519 basepoint:
-pub(crate) static BASEPOINT_ODD_LOOKUP_TABLE: NafLookupTable8<CachedPoint> = NafLookupTable8([
+pub static BASEPOINT_ODD_LOOKUP_TABLE: NafLookupTable8<CachedPoint> = NafLookupTable8([
     CachedPoint(F51x4Reduced([
         u64x4::new(1277522120965857, 73557767439946, 243332, 1943719795065404),
         u64x4::new(108375142003455, 341984820733594, 0, 2097709862669256),

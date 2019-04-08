@@ -25,7 +25,6 @@
 // This means that missing docs will still fail CI, but means we can use
 // README.md as the crate documentation.
 #![cfg_attr(feature = "nightly", deny(missing_docs))]
-
 #![cfg_attr(feature = "nightly", doc(include = "../README.md"))]
 #![doc(html_logo_url = "https://doc.dalek.rs/assets/dalek-logo-clear.png")]
 
@@ -64,7 +63,7 @@ extern crate serde;
 
 // Internal macros. Must come first!
 #[macro_use]
-pub(crate) mod macros;
+pub mod macros;
 
 //------------------------------------------------------------------------
 // curve25519-dalek public modules
@@ -93,13 +92,13 @@ pub mod traits;
 //------------------------------------------------------------------------
 
 // Finite field arithmetic mod p = 2^255 - 19
-pub(crate) mod field;
+pub mod field;
 
 // Arithmetic backends (using u32, u64, etc) live here
-pub(crate) mod backend;
+pub mod backend;
 
 // Crate-local prelude (for alloc-dependent features like `Vec`)
-pub(crate) mod prelude;
+pub mod prelude;
 
 // Generic code for window lookups
-pub(crate) mod window;
+pub mod window;

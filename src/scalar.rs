@@ -192,9 +192,9 @@ pub struct Scalar {
     ///
     /// This ensures that there is room for a carry bit when computing a NAF representation.
     //
-    // XXX This is pub(crate) so we can write literal constants.  If const fns were stable, we could
+    // XXX This is pub so we can write literal constants.  If const fns were stable, we could
     //     make the Scalar constructors const fns and use those instead.
-    pub(crate) bytes: [u8; 32],
+    pub bytes: [u8; 32],
 }
 
 impl Scalar {
@@ -787,7 +787,7 @@ impl Scalar {
     }
 
     /// Get the bits of the scalar.
-    pub(crate) fn bits(&self) -> [i8; 256] {
+    pub fn bits(&self) -> [i8; 256] {
         let mut bits = [0i8; 256];
         for i in 0..256 {
             // As i runs from 0..256, the bottom 3 bits index the bit,
@@ -869,7 +869,7 @@ impl Scalar {
     /// If \\( k \mod 2^w\\) is even, we emit \\(0\\), advance 1 bit
     /// and reindex.  In fact, by setting all digits to \\(0\\)
     /// initially, we don't need to emit anything.
-    pub(crate) fn non_adjacent_form(&self, w: usize) -> [i8; 256] {
+    pub fn non_adjacent_form(&self, w: usize) -> [i8; 256] {
         // required by the NAF definition
         debug_assert!( w >= 2 );
         // required so that the NAF digits fit in i8
@@ -932,7 +932,7 @@ impl Scalar {
     ///    a = a\_0 + a\_1 16\^1 + \cdots + a_{63} 16\^{63},
     /// $$
     /// with \\(-8 \leq a_i < 8\\) for \\(0 \leq i < 63\\) and \\(-8 \leq a_{63} \leq 8\\).
-    pub(crate) fn to_radix_16(&self) -> [i8; 64] {
+    pub fn to_radix_16(&self) -> [i8; 64] {
         debug_assert!(self[31] <= 127);
         let mut output = [0i8; 64];
 
@@ -962,7 +962,7 @@ impl Scalar {
     }
 
     /// Unpack this `Scalar` to an `UnpackedScalar` for faster arithmetic.
-    pub(crate) fn unpack(&self) -> UnpackedScalar {
+    pub fn unpack(&self) -> UnpackedScalar {
         UnpackedScalar::from_bytes(&self.bytes)
     }
 
